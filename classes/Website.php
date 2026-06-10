@@ -18,6 +18,12 @@ class Website {
         return $stmt->fetch();
     }
 
+    public function getWebsiteByApiKey($api_key) {
+        $stmt = $this->pdo->prepare('SELECT * FROM websites WHERE api_key = ?');
+        $stmt->execute([$api_key]);
+        return $stmt->fetch();
+    }
+
     public function getTotalCount() {
         $stmt = $this->pdo->query('SELECT COUNT(*) FROM websites');
         return $stmt->fetchColumn();
